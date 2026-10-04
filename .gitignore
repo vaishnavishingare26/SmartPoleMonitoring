@@ -1,0 +1,7 @@
+﻿__pycache__/
+*.pyc
+chrome-data/
+Captured_Images/
+captured.jpg
+PyWhatKit_DB.txt
+ngrok.exe

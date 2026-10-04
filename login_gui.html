@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Electric Pole Current Detection System</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+height:100vh;
+background:url("logo.png") no-repeat center center/cover;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.login-box{
+width:380px;
+padding:40px;
+background:rgba(0,0,0,0.55);
+backdrop-filter:blur(10px);
+border-radius:12px;
+color:white;
+box-shadow:0 10px 30px rgba(0,0,0,0.6);
+}
+
+.login-box h2{
+text-align:center;
+margin-bottom:25px;
+color:#FFD700;
+}
+
+.input-box{
+position:relative;
+margin-bottom:20px;
+}
+
+.input-box span{
+position:absolute;
+left:10px;
+top:10px;
+font-size:18px;
+}
+
+.input-box input{
+width:100%;
+padding:10px 10px 10px 35px;
+border:none;
+border-radius:6px;
+background:rgba(255,255,255,0.9);
+}
+
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:6px;
+background:#ff7a18;
+color:white;
+font-weight:600;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#e85d04;
+transform:scale(1.05);
+}
+
+.error{
+margin-top:10px;
+font-size:14px;
+color:#ff4d4d;
+text-align:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+<h2>⚡ Electric Pole Current Detection System</h2>
+
+<div class="input-box">
+<span>👤</span>
+<input type="text" id="username" placeholder="Username">
+</div>
+
+<div class="input-box">
+<span>🔒</span>
+<input type="password" id="password" placeholder="Password">
+</div>
+
+<div class="input-box">
+<span>📱</span>
+<input type="text" id="phone" placeholder="Mobile Number">
+</div>
+
+<button onclick="startMonitoring()">Start Monitoring</button>
+
+<p class="error" id="errorMsg"></p>
+
+</div>
+
+<script>
+
+function startMonitoring(){
+
+let username=document.getElementById("username").value.trim();
+let password=document.getElementById("password").value.trim();
+let phone=document.getElementById("phone").value.trim();
+
+if(username=="" || password=="" || phone==""){
+document.getElementById("errorMsg").innerText="Please fill all fields";
+return;
+}
+
+if(phone.length!=10 || isNaN(phone)){
+document.getElementById("errorMsg").innerText="Enter valid 10 digit mobile number";
+return;
+}
+
+/* mobile number save */
+
+localStorage.setItem("admin_phone",phone);
+
+/* dashboard open */
+
+window.location.href="dashboard.html";
+
+}
+
+</script>
+
+</body>
+</html>

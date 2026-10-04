@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Live Pole Monitoring</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+body{
+margin:0;
+font-family:Segoe UI;
+background:linear-gradient(135deg,#eef2ff,#f0f9ff);
+}
+
+/* HEADER */
+
+.header{
+padding:20px 40px;
+font-size:32px;
+font-weight:700;
+display:flex;
+justify-content:space-between;
+}
+
+.status{
+color:green;
+font-size:18px;
+}
+
+/* MAIN GRID */
+
+.container{
+padding:30px;
+display:grid;
+grid-template-columns:2fr 1fr;
+grid-gap:25px;
+}
+
+/* CAMERA PANEL */
+
+.camera{
+background:white;
+padding:20px;
+border-radius:18px;
+box-shadow:0 6px 18px rgba(0,0,0,0.1);
+}
+
+.camera img{
+width:100%;
+border-radius:10px;
+}
+
+/* INFO CARDS */
+
+.cards{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+.card{
+background:linear-gradient(135deg,#ffd6ff,#e9d5ff);
+padding:20px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
+
+.card h3{
+font-size:18px;
+}
+
+.card p{
+font-size:28px;
+font-weight:bold;
+}
+
+/* BOTTOM */
+
+.bottom{
+margin:30px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px;
+}
+
+.panel{
+background:white;
+padding:20px;
+border-radius:18px;
+box-shadow:0 6px 18px rgba(0,0,0,0.1);
+}
+
+.timeline{
+height:200px;
+overflow:auto;
+font-size:14px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<div>Live Electrical Pole Monitoring</div>
+
+<div class="status">● LIVE MONITORING ACTIVE</div>
+
+</div>
+
+<div class="container">
+
+<!-- CAMERA -->
+
+<div class="camera">
+
+<h3>Camera Feed</h3>
+
+<img src="{{ url_for('video_feed') }}">
+
+<p>Camera Status : ACTIVE</p>
+
+</div>
+
+<!-- INFO CARDS -->
+
+<div class="cards">
+
+<div class="card">
+<h3>Objects Detected</h3>
+<p>12</p>
+</div>
+
+<div class="card">
+<h3>Total Alerts</h3>
+<p>6</p>
+</div>
+
+<div class="card">
+<h3>Short Circuits</h3>
+<p>3</p>
+</div>
+
+<div class="card">
+<h3>System Status</h3>
+<p style="color:green">NORMAL</p>
+</div>
+
+</div>
+
+</div>
+
+<div class="bottom">
+
+<!-- EVENT TIMELINE -->
+
+<div class="panel">
+
+<h3>Event Timeline</h3>
+
+<div class="timeline">
+
+10:10 AM – Monitoring started<br>
+10:12 AM – Human detected near pole<br>
+10:13 AM – Voice alert triggered<br>
+10:15 AM – System normal
+
+</div>
+
+</div>
+
+<!-- CURRENT GRAPH -->
+
+<div class="panel">
+
+<h3>Electrical Current</h3>
+
+<canvas id="graph"></canvas>
+
+</div>
+
+</div>
+
+<script>
+
+let x=[]
+let y=[]
+
+for(let i=0;i<40;i++){
+x.push(i)
+y.push(Math.sin(i/4))
+}
+
+new Chart(document.getElementById("graph"),{
+
+type:"line",
+
+data:{
+labels:x,
+datasets:[{
+data:y,
+borderColor:"#6366f1",
+tension:0.4
+}]
+},
+
+options:{
+plugins:{legend:{display:false}}
+}
+
+})
+
+</script>
+
+</body>
+
+</html>
